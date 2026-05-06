@@ -32,6 +32,22 @@ const LivingLegacy = () => {
     work: [], hobby: [], intellect: [], health: [], family: [], social: []
   });
 
+  // 日付形式（ISO 8601）を「YYYY/MM/DD」に変換するヘルパー関数
+  const formatDateValue = (val) => {
+    if (!val || typeof val !== 'string') return val;
+    // スプレッドシートからの日付形式（例: 2028-01-01T08:00:00.000Z）を判定
+    if (val.includes('T') && val.includes('Z')) {
+      const date = new Date(val);
+      if (!isNaN(date.getTime())) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        return `${y}/${m}/${d}`;
+      }
+    }
+    return val;
+  };
+
   React.useEffect(() => {
     if (GAS_URL) fetchData();
   }, []);
@@ -43,13 +59,30 @@ const LivingLegacy = () => {
       const response = await fetch(GAS_URL);
       const data = await response.json();
       if (data.status === 'error') throw new Error(data.message);
-      if (data.categories) setCategories(prev => prev.map(cat => ({ ...cat, bhag: data.categories[cat.id] || cat.bhag })));
+      
+      if (data.categories) {
+        setCategories(prev => prev.map(cat => ({ ...cat, bhag: data.categories[cat.id] || cat.bhag })));
+      }
+      
       if (data.items) {
         const newItems = { work: [], hobby: [], intellect: [], health: [], family: [], social: [] };
-        Object.keys(data.items).forEach(catId => { if (newItems[catId]) newItems[catId] = data.items[catId]; });
+        Object.keys(data.items).forEach(catId => { 
+          if (newItems[catId]) {
+            // 取得時に日付を整形する
+            newItems[catId] = data.items[catId].map(item => ({
+              ...item,
+              when: formatDateValue(item.when),
+              completedDate: formatDateValue(item.completedDate)
+            }));
+          } 
+        });
         setItems(newItems);
       }
-    } catch (error) { setErrorMessage("データの読み込みに失敗しました。"); } finally { setIsLoading(false); }
+    } catch (error) { 
+      setErrorMessage("データの読み込みに失敗しました。"); 
+    } finally { 
+      setIsLoading(false); 
+    }
   };
 
   const saveData = async () => {
@@ -65,7 +98,12 @@ const LivingLegacy = () => {
       });
       setSaveStatus('success');
       setTimeout(() => setSaveStatus(null), 3000);
-    } catch (error) { setSaveStatus('error'); setErrorMessage("保存に失敗しました。"); } finally { setIsSaving(false); }
+    } catch (error) { 
+      setSaveStatus('error'); 
+      setErrorMessage("保存に失敗しました。"); 
+    } finally { 
+      setIsSaving(false); 
+    }
   };
 
   const updateBhag = (catId, newBhag) => setCategories(prev => prev.map(cat => cat.id === catId ? { ...cat, bhag: newBhag } : cat));
