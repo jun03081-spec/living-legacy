@@ -135,6 +135,36 @@ const LivingLegacy = () => {
           </div>
         </header>
 
+        {/* Core Values Section */}
+        <section className="space-y-8 relative">
+          <div className="text-center">
+            <h3 className="text-sm font-bold tracking-widest text-slate-400 uppercase mb-2 text-[10px]">Core Values</h3>
+            <h2 className="text-2xl font-bold text-slate-800">コアバリュー</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-3xl p-6 shadow-md border border-slate-100 hover:shadow-lg transition-all group">
+              <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform shadow-inner">🐟</div>
+              <h4 className="text-xl font-bold text-slate-800 mb-2">フナ <span className="text-[10px] font-normal text-slate-400 ml-1">ハブ・異質の統合</span></h4>
+              <p className="text-slate-500 text-sm leading-relaxed">様々なコミュニティと交流し、異質なものを組み合わせる。</p>
+            </div>
+            <div className="bg-white rounded-3xl p-6 shadow-md border border-slate-100 hover:shadow-lg transition-all group">
+              <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform shadow-inner">🐧</div>
+              <h4 className="text-xl font-bold text-slate-800 mb-2">ファーストペンギン <span className="text-[10px] font-normal text-slate-400 ml-1">最前線・挑戦</span></h4>
+              <p className="text-slate-500 text-sm leading-relaxed">非属の人。皆の前例となり、未知の領域へ挑戦する。</p>
+            </div>
+            <div className="bg-white rounded-3xl p-6 shadow-md border border-slate-100 hover:shadow-lg transition-all group">
+              <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform shadow-inner">🦎</div>
+              <h4 className="text-xl font-bold text-slate-800 mb-2">カメレオン <span className="text-[10px] font-normal text-slate-400 ml-1">環境・変化適応</span></h4>
+              <p className="text-slate-500 text-sm leading-relaxed">学習し、変わりゆく環境に素早く適応し続ける。</p>
+            </div>
+          </div>
+          
+          <div className="flex justify-center pt-4 opacity-30">
+            <ChevronDown className="text-slate-400 animate-bounce" />
+          </div>
+        </section>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {categories.map(cat => {
             const style = themeStyles[cat.color];
