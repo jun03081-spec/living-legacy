@@ -11,8 +11,8 @@ const themeStyles = {
 };
 
 const LivingLegacy = () => {
-  // ★ ここにご自身のGAS URLを貼り付けてください
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbzqen-eDOkjrooiQWMzGGMTxFrZkSvfghh2A2FFSSO4EztPaqY2RneXMMJ27mAt45hxZw/exec'; 
+  // ★ 更新されたGAS URL
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbxBJky_0X56pr-8gSw_OjlqVpSM2w5LcerJ7TDbRzWyRIsHZFy1ZbjI14MEdHL-m-tfJQ/exec'; 
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
