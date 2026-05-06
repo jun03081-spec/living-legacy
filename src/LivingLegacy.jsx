@@ -12,7 +12,7 @@ const themeStyles = {
 
 const LivingLegacy = () => {
   // ★ スプレッドシート連携用URL
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbzqen-eDOkjrooiQWMzGGMTxFrZkSvfghh2A2FFSSO4EztPaqY2RneXMMJ27mAt45hxZw/exec'; 
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbzGV0LyS5AxLQP6p2YnHcmyGWuT842gh58LWpQSQFFFU0LknR0tNCaXGfrjev6Kxh4aCA/exec'; 
 
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
