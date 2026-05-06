@@ -160,7 +160,8 @@ const LivingLegacy = () => {
                   </div>
                   
                   <div className="space-y-4">
-                    {items[cat.id]?.map(item => (
+                    {/* 未完了（isCompleted: false）の項目のみをフィルタリングして表示 */}
+                    {items[cat.id]?.filter(item => !item.isCompleted).map(item => (
                       <div key={item.id} className="bg-white/90 rounded-2xl border border-slate-100 shadow-sm p-4 group transition-all hover:shadow-md">
                         <div className="flex items-start gap-3 mb-4">
                           <button onClick={() => toggleComplete(cat.id, item.id)} className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 transition-all ${item.isCompleted ? style.checkActive : 'border-slate-200 bg-slate-50'}`}>{item.isCompleted && <Check size={14} strokeWidth={3} />}</button>
@@ -169,7 +170,7 @@ const LivingLegacy = () => {
                         </div>
                         
                         {/* 3行構成の入力エリア */}
-                        <div className={`space-y-2 transition-opacity ${item.isCompleted ? 'opacity-40' : 'opacity-100'}`}>
+                        <div className="space-y-2">
                           {/* 1段目: いつ */}
                           <div className="flex items-center gap-2 bg-slate-50 p-2 rounded-xl border border-slate-100">
                             <Calendar size={12} className="text-slate-400" />
